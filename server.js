@@ -9,7 +9,7 @@ const projectRouter = require('./projectRouter/projectRequest');
 const userRouter = require('./userRouter/userRequest');
 
 const app = express();
-const port = process.env.BACKEND_PORT || 4040;
+const port = process.env.BACKEND_PORT || 4041;
 
 app.use(cors());
 app.use(bodyParser.json());
