@@ -2,9 +2,11 @@ const pool = require('../database');
 
 const getAccountName = (req, res, next) => {
     const { accountName } = req.body;
+    console.log(accountName);
 
     pool.query(`SELECT password FROM users WHERE name = '${accountName}'`, (error, result) => {
         if (error) {
+            console.log(error.message);
             res.status(400).json({message: 'Database problem'});
             throw error;
         }
