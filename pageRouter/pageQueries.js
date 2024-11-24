@@ -1,9 +1,18 @@
 const pool = require('../database');
 
-const getAccountName = (req, res, next) => {
+const getAccountName = async (req, res, next) => {
     const { accountName } = req.body;
     console.log(accountName);
 
+    try {
+        const result = await pool.query(`SELECT password FROM users WHERE name = '${accountName}'`);
+        res.status(200).json(result);
+    }
+    catch(error) {
+        console.log(error);
+        res.status(500).send(error.message)
+    }
+    /*
     pool.query(`SELECT password FROM users WHERE name = '${accountName}'`, (error, result) => {
         if (error) {
             console.log(error.message);
@@ -18,6 +27,7 @@ const getAccountName = (req, res, next) => {
             next();
         }
     });
+    */
 };
 
 const validateAccountName = (req, res, next) => {

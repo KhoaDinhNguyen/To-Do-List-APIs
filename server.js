@@ -14,6 +14,7 @@ const port = process.env.BACKEND_PORT || 4040;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.use('/task', taskRouter);
 app.use('/project', projectRouter);
